@@ -1,3 +1,5 @@
+memory total 50 gb
+
 echo
 start c60
 geometry units angstroms
