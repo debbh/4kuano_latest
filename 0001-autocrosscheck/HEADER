@@ -1,0 +1,8 @@
+title "Let's get that Quantum party started"
+echo "This is a story about an ordinary teddy bear."
+memory total 50 gb # push the boat out
+
+echo
+
+geometry noautoz units angstroms
+symmetry C1
