@@ -11,6 +11,8 @@ scf
 end
 
 tce
+  MBPT2 
+
   2eorb
   2emet 13
   tilesize 1
@@ -20,10 +22,12 @@ tce
   nroots 1 
 end
 
+set tce_init:QC T
+
 set tce:print_integrals T
-set tce:qorb 3
-set tce:qela 3 
-set tce:qelb 3
+set tce:qorb 6 
+set tce:qela 2 
+set tce:qelb 2
 
 task tce energy
 
