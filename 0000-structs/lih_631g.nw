@@ -1,0 +1,38 @@
+memory total 50 gb
+
+echo
+
+start lih
+
+geometry units angstroms
+symmetry C1
+  Li         0.000000        0.000000        0.000000
+  H          1.595000        0.000000        0.000000
+end
+
+basis spherical
+ * library 6-31g
+end
+
+scf
+  singlet
+  rhf
+  thresh 1e-8
+  direct
+end
+
+tce
+  mbpt2
+  2eorb
+  2emet 13
+  thresh 1.0d-7
+  maxiter 150
+end
+
+set tce:print_integrals T
+set tce:qorb 11
+set tce:qela 2
+set tce:qelb 2
+
+task tce energy
+

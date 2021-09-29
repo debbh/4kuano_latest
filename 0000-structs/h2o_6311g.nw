@@ -1,0 +1,39 @@
+memory total 50 gb
+
+echo
+
+start water
+
+geometry units angstroms
+symmetry C1
+  H    0.7493682    0.0000000    0.4424329
+  O    0.0000000    0.0000000   -0.1653507
+  H   -0.7493682    0.0000000    0.4424329
+end
+
+basis spherical
+ * library 6-311g
+end
+
+scf
+  singlet
+  rhf
+  thresh 1e-8
+  direct
+end
+
+tce
+  mbpt2
+  2eorb
+  2emet 13
+  thresh 1.0d-7
+  maxiter 150
+end
+
+set tce:print_integrals T
+set tce:qorb 19
+set tce:qela 5
+set tce:qelb 5
+
+task tce energy
+
