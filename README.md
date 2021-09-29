@@ -55,6 +55,29 @@ This code only accepts CCSD energies else will give errors when used with mbpt2 
 
 ## Scaling test
 
+# atoms  elecs  yaml-sto3g   sto3g_out  yaml-631g   631g_out  ( in MB )
+
+#########################################################################
+#
+    2     4      0.0086       0.028      0.073       0.068      # Lih
+
+    3     10     0.013        0.032      0.104       0.088      # H2O
+
+    2     14     0.027        0.040      0.251       0.171      # N2
+
+    12    42     2.7          1.6        36          20         # Benzene
+
+    24    94     219          122         -            -        # Anthracene
+#
+#########################################################################
+
+#
+
+# H2O basis set comparison for yaml files
+
+#  sto-3g  6-31g  6-311g   cc-pVDZ   cc-pVTZ  (in MB)
+--------------------------------------------------
+#   0.013   0.104   0.426   0.902      27
 
 
 ## TODO
