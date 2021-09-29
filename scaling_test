@@ -1,6 +1,6 @@
 ## Scaling test
 
-``` 
+ 
 # atoms  elecs  yaml-sto3g   sto3g_out  yaml-631g   631g_out  ( in MB )
 
 #########################################################################
@@ -24,7 +24,7 @@
 #  sto-3g  6-31g   6-311g   cc-pVDZ   cc-pVTZ  (in MB)
 --------------------------------------------------
 #   0.013  0.104   0.426    0.902      27
-```
+
 
 
 Meaning of header:
@@ -35,7 +35,7 @@ yaml-631g  --- size of the yaml files in 6-31g basis
 631g_out   --- size of the nwchem output file in 6-31g basis
 
 
-```
+
 *********************************************************************************
 
 basis_functions   no_of_electrons    yaml_size(in MB)   cpu_time(sec)  wall_time(sec)
@@ -83,7 +83,7 @@ basis_functions   no_of_electrons    yaml_size(in MB)   cpu_time(sec)  wall_time
                                                           -            -   (Exceeded time slot)
   
 *********************************************************************************
-```
+
 ### Point to note
 
 Under the TCE header 
