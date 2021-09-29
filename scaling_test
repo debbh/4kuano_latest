@@ -27,7 +27,7 @@
 ```
 
 
-Meaning of header files:
+Meaning of header:
 
 yaml-sto3g --- size of yaml files in sto-3g basis
 sto3g_out  --- size of the nwchem output file in sto-3g basis
