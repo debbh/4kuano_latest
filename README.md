@@ -32,7 +32,7 @@ end
 set tce_init:QC T
 
 set tce:print_integrals T
-set tce:qorb 6 
+set tce:qorb 6       
 set tce:qela 2 
 set tce:qelb 2
 
@@ -41,16 +41,34 @@ task tce energy
 
 Is the standard approach, which also does a CCSD calculation, which is then extracted as a 'good guess' for the quantum calculation along with the CCSD energy.
 
-## export_chem_library_yaml.py
+Since, setting up a CCSD calculation is computationally very expensive we have used the MBPT2 as an alternative to print the 1 and 2 electron integrals. 
 
-... notes ...
+The corresponding yaml generator is the 
+## export2YAML_mbpt_energy.py code. 
+
+This python code is explicitly modified to accept the MBPT2 energies from the output file and then convert the 1 and 2 electron integrals into the yaml form. 
+This code will give an error message for any other post-HF method other than MBPT2.
+
+## export_chem_library_yaml.py
+This code only accepts CCSD energies else will give errors when used with mbpt2 calculations.
+
 
 ## Scaling test
 
-... notes ...
+
 
 ## TODO
 
- - [ ] Scaling test
- - [ ] Edit Python file to accept perturbation-theory originating 2e- integrals
- - [ ] Understand the NWCHEM failure when outputing MBPT2 methods; not able to print something?
+ - [Done upto Anthracene] Scaling test
+ - [Done] Edit Python file to accept perturbation-theory originating 2e- integrals
+ - [Prints everything] Understand the NWCHEM failure when outputing MBPT2 methods; not able to print something?
+
+The only issue here is the time constraint. 
+Anthracene (24 atoms with 94 electrons) took over 6 hours (real time) to simply print the 1 and 2 electron intergrals. MBPT2 calculations was not over yet. 
+However, if the goal is simply to get the 1 and 2 electron intergrals and not the final MBPT2 energies (which was the case here), we can use that output file and append it with the following lines to be able to pass it through the python code and get the integrals in YAML format. 
+
+In order to append an incomplete output file use the following command:
+cat output_file tail_end_file > appended_output 
+
+where, ### tail_end_file is simply the end part of a sample mbpt2 calculation. Please note, the final mbpt2 energy in this case wil lbe incorrect, but since the HF calculations were correct, the integrals will be correct. 
+This technique can save computational time, however it means the user needs to keep a live tab on the output file.
