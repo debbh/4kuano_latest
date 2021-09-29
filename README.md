@@ -43,8 +43,8 @@ Is the standard approach, which also does a CCSD calculation, which is then extr
 
 Since, setting up a CCSD calculation is computationally very expensive we have used the MBPT2 as an alternative to print the 1 and 2 electron integrals. 
 
-The corresponding yaml generator is the 
-## export2YAML_mbpt_energy.py code. 
+The corresponding yaml generator is
+## export2YAML_mbpt_energy.py 
 
 This python code is explicitly modified to accept the MBPT2 energies from the output file and then convert the 1 and 2 electron integrals into the yaml form. 
 This code will give an error message for any other post-HF method other than MBPT2.
@@ -52,8 +52,8 @@ This code will give an error message for any other post-HF method other than MBP
 ## export_chem_library_yaml.py
 This code only accepts CCSD energies else will give errors when used with mbpt2 calculations.
 
-
-## Scaling test
+```
+## Scaling test: see file scaling_test for more details
 
 # atoms  elecs  yaml-sto3g   sto3g_out  yaml-631g   631g_out  ( in MB )
 
@@ -78,7 +78,7 @@ This code only accepts CCSD energies else will give errors when used with mbpt2 
 #  sto-3g  6-31g   6-311g   cc-pVDZ   cc-pVTZ  (in MB)
 --------------------------------------------------
 #   0.013  0.104   0.426    0.902      27
-
+```
 
 ## TODO
 

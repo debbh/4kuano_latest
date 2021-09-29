@@ -1,0 +1,113 @@
+## Scaling test
+
+``` 
+# atoms  elecs  yaml-sto3g   sto3g_out  yaml-631g   631g_out  ( in MB )
+
+#########################################################################
+#
+    2     4      0.0086       0.028      0.073       0.068      # Lih
+
+    3     10     0.013        0.032      0.104       0.088      # H2O
+
+    2     14     0.027        0.040      0.251       0.171      # N2
+
+    12    42     2.7          1.6        36          20         # Benzene
+
+    24    94     219          122         -            -        # Anthracene
+#
+#########################################################################
+
+#
+
+# H2O basis set comparison for yaml files
+
+#  sto-3g  6-31g   6-311g   cc-pVDZ   cc-pVTZ  (in MB)
+--------------------------------------------------
+#   0.013  0.104   0.426    0.902      27
+```
+
+
+Meaning of header files:
+
+yaml-sto3g --- size of yaml files in sto-3g basis
+sto3g_out  --- size of the nwchem output file in sto-3g basis
+yaml-631g  --- size of the yaml files in 6-31g basis
+631g_out   --- size of the nwchem output file in 6-31g basis
+
+
+```
+*********************************************************************************
+
+basis_functions   no_of_electrons    yaml_size(in MB)   cpu_time(sec)  wall_time(sec)
+
+  6                    4                0.0086              0.0          0.0    --- RHF
+                                                            0.2          3.6    --- MBPT2
+   
+  7                   10                0.013               0.0          0.0    --- RHF
+                                                            0.3          4.9    --- MBPT2
+
+  10                  14                0.027               0.0          0.0    --- RHF
+                                                            0.6          3.7    --- MBPT2 
+
+  11                   4                0.073               0.0          0.0    --- RHF
+                                                            0.6          3.9    --- MBPT2
+
+  13                  10                0.104               0.1          0.1    --- RHF
+                                                            1.2          4.8    --- MBPT2
+
+  18                  14                0.251               0.2          0.2    --- RHF
+                                                            4.0          7.2    --- MBPT2
+
+  19                  10                0.426               0.3          0.3    --- RHF
+                                                            3.9          7.3    --- MBPT2
+
+  24                  10                0.902              25.9          4.5    --- RHF
+                                                           34.0         17.4    --- MBPT2
+ 
+  36                  42                2.7               107.4         25.9    --- RHF
+                                                          288.2        219.4    --- MBPT2 
+
+  58                  10               27                1419.0        198.9    --- RHF
+                                                         1772.2        575.5    --- MBPT2               
+
+  66                  42               36                1077.7        597.7    --- RHF
+                                                         13870.7      13487.7    --- MBPT2
+
+  96                  42              146               12991.6       3451.2    --- RHF
+                                                          -             -    (Exceeded time-slot before completion)
+  
+ *55(print qorb)      94               45                1086.2        639.5    --- RHF       
+  80(total)                                              2203.2       1747.4    --- MBPT2        
+                                                                                                     
+ *80                  94              219                2320.1       1385.3    --- RHF       
+                                                          -            -   (Exceeded time slot)
+  
+*********************************************************************************
+```
+### Point to note
+
+Under the TCE header 
+
+```
+tce
+  mbpt2
+  2eorb
+  2emet 13
+  thresh 1.0d-6
+  maxiter 150
+end
+
+set tce:print_integrals T
+set tce:qorb 80
+set tce:qela 47
+set tce:qelb 47
+
+```
+
+the set tce:qorb controls the printing of the 1 and 2 electron integrals. 
+If this number is less than the number of ao-functions, then only those orbitals (termed active orbitals are printed). 
+Rest of the orbitals are frozen and does not get printed in the 1 and 2 electron integrals. 
+This can lead to errors in the quantum calculations, unless some orbitals are to be frozen. 
+Please ensure that a preliminary HF calculation is run and then the 'qorb' keyword is plugged in to print all the 1 and 2 electron integrals.  
+
+As can be seen from the table above, lowering this qorb value, reduces the file size of the yaml output.  
